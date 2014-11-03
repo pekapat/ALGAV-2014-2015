@@ -45,3 +45,34 @@ caminho(O,D,LA,[O|L]):- liga(O,X), \+member(X,LA), caminho(X,D,[X|LA],L).
 %	inverte(L,LI) :- inverte(L,[],LI).
 %	inverte([],LI,LI).
 %	inverte([H|T],L,LI) :- inverte(T,[H|L],LI).
+
+
+%ex2
+
+%base de conhecimento:
+linha(1,[a,b,c,d,e,f]).
+linha(2,[g,b,h,i,j,k]).
+linha(3,[l,j,m,n,o,d,p]).
+linha(4,[f,q,r,s,t]).
+linha(5,[t,u,j,v,a,g]).
+
+%Code by Thaenor
+%codigo base:
+%cruza(nº_linhaA ,nº_linhaB, lista_estações_cruzamento)
+
+gera_cruzamentos:- findall(_,cruzamento,_).
+cruzamento:-  linha(N1,LE1), linha(N2,LE2),
+              N1 \== N2,
+              intersecção(LE1,LE2,LI),
+              LI \== [],
+              assertz(cruza(N1,N2,LI)).
+
+%Basta fazer a verificação para o caso de N1 e N2 serem diferentes, e se a lista não é vazia
+
+gera_estações:- findall(L,linha(_,L),LE).
+                gera_estacoes(LE,Estacoes),
+                assertz(estacoes(Estacoes)).
+
+gera_estacoes([H|[]],[H]):-!.
+gera_estacoes([H|T],U):-gera_estacoes(T,X),uniao(H,X,U).
+%Code by Thaenor (end) XD
