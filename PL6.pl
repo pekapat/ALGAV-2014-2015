@@ -79,9 +79,9 @@ gera_estações:- findall(L, linha(_,L), LE), gera_estações(LE,Estacoes), asse
 gera_estações([], []).
 gera_estações([H|T], LE):- gera_estações(T,LR), union(LR, H, LE).
 
-gera_estação_linhas:- estações(LE), gera_estação_linhas(LE).
-
 %	Exercício 2.c)
+
+gera_estação_linhas:- estações(LE), gera_estação_linhas(LE).
 
 gera_estação_linhas([]).
 gera_estação_linhas([H|T]):- findall(L, (linha(L,LE), member(H, LE) ), LN), assertz(estação_linha(H,LN)), gera_estação_linhas(T).
