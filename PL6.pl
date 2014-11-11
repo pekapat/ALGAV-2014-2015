@@ -56,7 +56,7 @@ todos_caminhos(O,D,L):- findall(P,caminho(O,D,P),L).
 menor_caminho(O,D,L):- todos_caminhos(O,D,C), menor(C,L).
 
 menor([H|[]],H):-!.
-menor([H|T],M):- menor(T,L1), (length(L1,M1), length(H,M2), M1 < M2, M = L1; M = H).
+menor([H|T],M):- menor(T,L1), (length(L1,M1), length(H,M2), M1 < M2, M = L1,!; M = H).
 
 %	Exercício 2.a)
 
