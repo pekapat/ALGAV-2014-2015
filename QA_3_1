@@ -1,0 +1,16 @@
+%Ligação de duplo sentido entre 2 locais e respetivo custo liga(a,b,1).
+liga(a,c,3).
+liga(a,d,4).
+liga(b,c,5). 
+liga(b,e,5). 
+liga(c,e,4). 
+liga(d,f,2). 
+liga(e,f,3).
+
+%Método de pesquisa. 
+pesquisa(Origem,Destino,Perc):-
+pesquisa1([(0,[Origem])],Destino,Perc).
+pesquisa1([(_,[D|T])|_],D,[D|T]).
+pesquisa1([(C,[A|T])|R],D,P):-proximos(A,C,T,L),append(R,L,N), sort(N,NL), pesquisa1(NL,D,P).
+
+proximos(A,C,T,L):- findall((Cs,[S,A|T]), ((liga(A,S,Ca); liga(S,A,Ca)),Cs is C + Ca), L).
