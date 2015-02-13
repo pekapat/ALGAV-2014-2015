@@ -91,7 +91,7 @@ menor_percurso(Percurso, Menor, Percurso1),
 
 menor_percurso([H|T],H,T).
 
-menor(c(A1,B1,_), c(A2,B2,_)):- As1 is A1 + B1, As2 is A2 + B2, As2 < As1.
+menor(c(A1/B1,_), c(A2/B2,_)):- As1 is A1 + B1, As2 is A2 + B2, As2 < As1.
 
 estimativa(C1,C2,Est):-
 		cidade(C1,X1,Y1),
